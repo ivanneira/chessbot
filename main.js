@@ -15,13 +15,14 @@ var api = new TelegramBot({
     }
 });
 
-
+/*
 var options = {
     host: '10.2.0.1',
     port: 6588,
     path: 'api.chess.com/pub/player/ivaneduardoneira/games',
     headers: {'User-Agent': 'request'}
 };
+*/
 
 var games;
 var ivan = 14910151;
@@ -30,7 +31,18 @@ var turnoAnterior = "blancas";
 
 function update(){
 
+    https.get('https://api.chess.com/pub/player/ivaneduardoneira/games/', (res) => {
+        console.log('statusCode:', res.statusCode);
+    console.log('headers:', res.headers);
 
+    res.on('data', (d) => {
+        process.stdout.write(d);
+});
+
+}).on('error', (e) => {
+        console.error(e);
+});
+/*
     https.get(options, function (res) {
 
         var json = '';
@@ -56,6 +68,7 @@ function update(){
 
         console.log('Error:', err);
     });
+    */
 }
 
 function process(){
