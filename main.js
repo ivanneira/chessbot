@@ -21,7 +21,7 @@ var api = new TelegramBot({
 var games;
 var ivan = 14910151;
 var imbrium = 490801566;
-var turnoAnterior = "blancas";
+var turnoAnterior = "negras";
 
 function update(){
 
@@ -37,9 +37,7 @@ function update(){
 
         } else {
 
-            //console.log(data);
                 games = data.games[0];
-                console.log(games)
         }
     });
 
@@ -83,13 +81,7 @@ function sendMessage(turno){
     }
 
     enviar(ivan, message.text)
-/*
-    api.sendMessage({
 
-        chat_id: imbrium,
-        text: message
-    });
-    */
 }
 
 setInterval(update, 3000);
