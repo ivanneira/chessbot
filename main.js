@@ -3,7 +3,7 @@ var request = require('request');
 var tryjson = require('tryjson');
 var TelegramBot = require('telegram-bot-api');
 
-var url = 'api.chess.com/pub/player/ivaneduardoneira/games';
+var url = 'https://api.chess.com/pub/player/ivaneduardoneira/games';
 
 var api = new TelegramBot({
     token: '605637086:AAGyrQN2rkiG0guSD-ze2g7xuEU8jFO5D0E',
@@ -23,13 +23,21 @@ var ivan = 14910151;
 var imbrium = 490801566;
 var turnoAnterior = "blancas";
 
+var options = {
+    hostname: 'api.chess.com'
+    ,path: '/pub/player/ivaneduardoneira/games'
+    ,method: 'GET'
+    ,headers: { 'Content-Type': 'application/json' }
+}
+
 function update(){
 
-    request.get({
-        uri: url,
-        headers: { 'Content-Type': 'application/json' }
-    },function(data){
-        console.log(data)
+    var req = http.request(options, function(res){
+
+        res.setEncoding('utf8');
+        res.on('data', function (data) {
+            console.log(JSON.parse(data));
+        });
     });
 
 /*
