@@ -32,7 +32,7 @@ var turnoAnterior = "blancas";
 function update(){
 
 
-    https.get('api.chess.com/pub/player/ivaneduardoneira/games', function(res){
+    https.get('https://api.chess.com/pub/player/ivaneduardoneira/games', function(res){
 
         console.log("enviando res")
         console.log(res)
