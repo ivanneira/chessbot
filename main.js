@@ -27,14 +27,16 @@ function update(){
 
     request.get({
         url: url,
+        json: true,
         headers: {'User-Agent': 'request'}
         }, function(err, res, data){
             if (err) {
-                console.log('Error:', err);
+
+                enviar(ivan,err);
             } else if (res.statusCode !== 200) {
-            console.log('Status:', res.statusCode);
+
         } else {
-            // data is already parsed as JSON:
+
             console.log(data);
         }
     });
@@ -78,11 +80,7 @@ function sendMessage(turno){
         message = "Blancas movieron el día " + fecha + ", es el turno de las negras";
     }
 
-    api.sendMessage({
-
-        chat_id: ivan,
-        text: message
-    });
+    enviar(ivan, message.text)
 /*
     api.sendMessage({
 
@@ -99,17 +97,20 @@ api.on('message', function(message){
 
     if(message.from.id === ivan){
 
-        api.sendMessage({
-            chat_id: imbrium,
-            text: message.text
-        });
+        enviar(imbrium, message.text)
     }
 
     if(message.from.id === imbrium){
 
-        api.sendMessage({
-            chat_id: ivan,
-            text: message.text
-        });
+        enviar(ivan, message.text)
     }
 });
+
+function enviar(user, message){
+
+    api.sendMessage({
+
+        chat_id: user,
+        text: message
+    });
+}
