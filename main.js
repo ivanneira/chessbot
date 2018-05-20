@@ -25,6 +25,12 @@ var turnoAnterior = "blancas";
 
 function update(){
 
+    request
+        .get(url)
+        .on('response', function(response){
+            console.log(response)
+        })
+/*
     request.get({
         url: url,
         json: true,
@@ -41,7 +47,7 @@ function update(){
                 process();
         }
     });
-
+*/
 }
 
 function process(){
