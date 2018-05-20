@@ -21,7 +21,7 @@ var api = new TelegramBot({
 var games;
 var ivan = 14910151;
 var imbrium = 490801566;
-var turnoAnterior = "blancas";
+var turnoAnterior = "negras";
 
 var options = {
     uri: url,
@@ -86,7 +86,7 @@ function sendMessage(turno){
 
 }
 
-setInterval(update, 3000);
+setInterval(update, 10000);
 
 /*recepcion de mensajes*/
 api.on('message', function(message){
