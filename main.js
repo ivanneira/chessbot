@@ -37,7 +37,9 @@ function update(){
 
         } else {
 
-            console.log(data);
+            //console.log(data);
+                games = data[0];
+                console.log(games)
         }
     });
 
