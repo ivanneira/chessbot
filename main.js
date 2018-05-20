@@ -21,7 +21,7 @@ var api = new TelegramBot({
 var games;
 var ivan = 14910151;
 var imbrium = 490801566;
-var turnoAnterior = "blancas";
+var turnoAnterior = "negras";
 
 var options = {
     uri: url,
@@ -40,26 +40,6 @@ function update(){
             process();
         }
     });
-
-/*
-    request.get({
-        url: url,
-        json: true,
-        headers: {'User-Agent': 'request'}
-        }, function(err, res, data){
-            if (err) {
-
-                enviar(ivan,err);
-            } else if (res.statusCode !== 200) {
-
-        } else {
-
-                games = data.games[0];
-                process();
-        }
-    });
-*/
-}
 
 function process(){
 
