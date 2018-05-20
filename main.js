@@ -21,7 +21,7 @@ var api = new TelegramBot({
 var games;
 var ivan = 14910151;
 var imbrium = 490801566;
-var turnoAnterior = "negras";
+var turnoAnterior = "blancas";
 
 var options = {
     uri: url,
@@ -46,8 +46,6 @@ function update() {
 function process(){
 
     var turno;
-
-    console.log(games)
 
     for(var index in games){
 
