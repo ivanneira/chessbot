@@ -26,7 +26,7 @@ var turnoAnterior = "blancas";
 function update(){
 
     request.get({
-        path: url,
+        uri: url,
         headers: { 'Content-Type': 'application/json' }
     },function(data){
         console.log(data)
