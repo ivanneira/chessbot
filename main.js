@@ -1,5 +1,6 @@
 'use strict';
 var request = require('request');
+var https = require('https');
 var tryjson = require('tryjson');
 var TelegramBot = require('telegram-bot-api');
 
@@ -21,7 +22,7 @@ var api = new TelegramBot({
 var games;
 var ivan = 14910151;
 var imbrium = 490801566;
-var turnoAnterior = "blancas";
+var turnoAnterior = "negras";
 /*
 var options = {
     uri: url,
