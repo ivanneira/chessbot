@@ -31,8 +31,8 @@ var options = {
 };
 */
 var options = {
-    host: 'api.chess.com',
-    path: '/pub/player/ivaneduardoneira/games',
+    uri: url,
+    json: true,
     headers: {'User-Agent': 'request'}
 };
 
@@ -61,6 +61,8 @@ function update() {
 function process(){
 
     var turno;
+
+    console.log(games)
 
     for(var index in games){
 
