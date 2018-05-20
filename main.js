@@ -32,6 +32,7 @@ var options = {
 function update(){
 
     request(options, function(error, response, body){
+
         if(error){
             console.log(error);
         }else{
