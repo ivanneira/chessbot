@@ -5,6 +5,10 @@ var TelegramBot = require('telegram-bot-api');
 
 var api = new TelegramBot({
     token: '605637086:AAGyrQN2rkiG0guSD-ze2g7xuEU8jFO5D0E',
+    http_proxy: {
+        host: '10.2.0.1',
+        port: 6588
+    },
     updates: {
         enabled: true,
         get_interval: 1000
@@ -13,7 +17,8 @@ var api = new TelegramBot({
 
 
 var options = {
-    host: 'api.chess.com',
+    host: '10.2.0.1',
+    port: 6588,
     path: '/pub/player/ivaneduardoneira/games',
     headers: {'User-Agent': 'request'}
 };
@@ -40,7 +45,7 @@ function update(){
                 games = data.games[0]
 
                 process();
-                //console.log(games)
+                console.log(games)
             } else {
                 console.log('Status:', res.statusCode);
             }
@@ -94,12 +99,13 @@ function sendMessage(turno){
         chat_id: ivan,
         text: message
     });
-
+/*
     api.sendMessage({
 
         chat_id: imbrium,
         text: message
     });
+    */
 }
 
 setInterval(update, 3000);
