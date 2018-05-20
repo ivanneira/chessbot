@@ -1,0 +1,18 @@
+{
+  "name": "chessbot",
+  "version": "1.0.0",
+  "description": "bot de aviso de ajedrez",
+  "main": "main.js",
+  "dependencies": {
+    "simple-ajax": "^2.6.0",
+    "telegram-bot-api": "^1.2.0",
+    "tryjson": "^1.1.4",
+    "xmlhttprequest": "^1.8.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ivan",
+  "license": "ISC"
+}
