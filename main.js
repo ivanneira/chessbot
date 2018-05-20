@@ -27,7 +27,6 @@ function update(){
 
     request.get({
         url: url,
-        json: true,
         headers: {'User-Agent': 'request'}
         }, function(err, res, data){
             if (err) {
