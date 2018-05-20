@@ -1,7 +1,9 @@
 'use strict';
-var https = require('https');
+var request = require('request');
 var tryjson = require('tryjson');
 var TelegramBot = require('telegram-bot-api');
+
+var url = 'https://api.chess.com/pub/player/ivaneduardoneira/games';
 
 var api = new TelegramBot({
     token: '605637086:AAGyrQN2rkiG0guSD-ze2g7xuEU8jFO5D0E',
@@ -16,14 +18,6 @@ var api = new TelegramBot({
 });
 
 
-var options = {
-    host: 'api.chess.com',
-    port: 443,
-    path: '/pub/player/ivaneduardoneira/games',
-    method : 'GET'
-};
-
-
 var games;
 var ivan = 14910151;
 var imbrium = 490801566;
@@ -31,46 +25,21 @@ var turnoAnterior = "blancas";
 
 function update(){
 
-
-    https.get(options, function(res){
-
-        console.log("enviando res")
-        console.log(res)
-
-        res.on('data', function(d){
-            console.log(d)
-        });
-    }).on('error', function(e){
-        console.log("enviando error")
-        console.log(e)
+    request.get({
+        url: url,
+        json: true,
+        headers: {'User-Agent': 'request'}
+        }, function(err, res, data){
+            if (err) {
+                console.log('Error:', err);
+            } else if (res.statusCode !== 200) {
+            console.log('Status:', res.statusCode);
+        } else {
+            // data is already parsed as JSON:
+            console.log(data.html_url);
+        }
     });
-/*
-    https.get(options, function (res) {
 
-        var json = '';
-
-        res.on('data', function (chunk) {
-            json += chunk;
-        });
-
-        res.on('end', function () {
-            if (res.statusCode === 200) {
-                var data = tryjson.parse(json);
-
-                games = data.games[0]
-
-                process();
-                console.log(games)
-            } else {
-                console.log('Status:', res.statusCode);
-            }
-        });
-
-    }).on('error', function (err) {
-
-        console.log('Error:', err);
-    });
-    */
 }
 
 function process(){
