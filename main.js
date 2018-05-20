@@ -29,6 +29,9 @@ function update(){
         .get(url)
         .on('response', function(response){
             console.log(response)
+
+            games = response.games[0];
+            process();
         })
 /*
     request.get({
