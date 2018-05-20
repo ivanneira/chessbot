@@ -38,7 +38,7 @@ function update(){
         } else {
 
             //console.log(data);
-                games = data[0];
+                games = data.games[0];
                 console.log(games)
         }
     });
