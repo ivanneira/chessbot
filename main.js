@@ -38,6 +38,7 @@ function update(){
         } else {
 
                 games = data.games[0];
+                process();
         }
     });
 
@@ -46,7 +47,7 @@ function update(){
 function process(){
 
     var turno;
-    console.log("process")
+
     for(var index in games){
 
         if(games[index].turn === "white"){
