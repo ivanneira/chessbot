@@ -32,7 +32,7 @@ var options = {
 
 function update(){
 
-    var req = http.request(options, function(res){
+    var req = https.request(options, function(res){
 
         res.setEncoding('utf8');
         res.on('data', function (data) {
