@@ -22,24 +22,38 @@ var games;
 var ivan = 14910151;
 var imbrium = 490801566;
 var turnoAnterior = "blancas";
-
+/*
 var options = {
     uri: url,
     method: 'GET',
     json: true
 };
+*/
+var options = {
+    host: 'api.chess.com',
+    path: '/pub/player/ivaneduardoneira/games',
+    headers: {'User-Agent': 'request'}
+};
 
 function update() {
 
-    request(options, function (error, response, body) {
+    https.get(options, function (res) {
+        var json = '';
 
-        if (error) {
-            console.log(error);
-        } else {
-            games = body.games[0];
+        res.on('data', function (chunk) {
+            json += chunk;
+        });
 
-            process();
-        }
+        res.on('end', function () {
+            if (res.statusCode === 200) {
+                var data = tryjson.parse(json);
+                console.log(data);
+            } else {
+                console.log('Status:', res.statusCode);
+            }
+        });
+    }).on('error', function (err) {
+        console.log('Error:', err);
     });
 }
 
