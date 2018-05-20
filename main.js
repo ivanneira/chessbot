@@ -26,7 +26,7 @@ var options = {
 var games;
 var ivan = 14910151;
 var imbrium = 490801566;
-var turnoAnterior = "negras";
+var turnoAnterior = "blancas";
 
 function update(){
 
