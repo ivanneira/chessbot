@@ -24,11 +24,10 @@ var imbrium = 490801566;
 var turnoAnterior = "blancas";
 
 var options = {
-    hostname: 'api.chess.com'
-    ,path: '/pub/player/ivaneduardoneira/games'
-    ,method: 'GET'
-    ,json: true
-}
+    uri: url,
+    method: 'GET',
+    json: true
+};
 
 function update(){
 
