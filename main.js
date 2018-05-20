@@ -25,14 +25,13 @@ var turnoAnterior = "blancas";
 
 function update(){
 
-    request
-        .get(url)
-        .on('response', function(response){
-            console.log(response)
+    request.get({
+        path: url,
+        headers: { 'Content-Type': 'application/json' }
+    },function(data){
+        console.log(data)
+    });
 
-            games = response.games[0];
-            process();
-        })
 /*
     request.get({
         url: url,
