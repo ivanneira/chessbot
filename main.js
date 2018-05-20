@@ -36,7 +36,7 @@ function update() {
         if (error) {
             console.log(error);
         } else {
-            games = response.games;
+            games = body.games[0];
 
             process();
         }
