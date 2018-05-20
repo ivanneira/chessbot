@@ -3,7 +3,7 @@ var request = require('request');
 var tryjson = require('tryjson');
 var TelegramBot = require('telegram-bot-api');
 
-var url = 'https://api.chess.com/pub/player/ivaneduardoneira/games';
+var url = 'api.chess.com/pub/player/ivaneduardoneira/games';
 
 var api = new TelegramBot({
     token: '605637086:AAGyrQN2rkiG0guSD-ze2g7xuEU8jFO5D0E',
