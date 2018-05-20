@@ -29,18 +29,19 @@ var options = {
     json: true
 };
 
-function update(){
+function update() {
 
-    request(options, function(error, response, body){
+    request(options, function (error, response, body) {
 
-        if(error){
+        if (error) {
             console.log(error);
-        }else{
+        } else {
             games = response.games;
 
             process();
         }
     });
+}
 
 function process(){
 
