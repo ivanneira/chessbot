@@ -31,17 +31,19 @@ var turnoAnterior = "blancas";
 
 function update(){
 
-    https.get('https://api.chess.com/pub/player/ivaneduardoneira/games/', (res) => {
-        console.log('statusCode:', res.statusCode);
-    console.log('headers:', res.headers);
 
-    res.on('data', (d) => {
-        process.stdout.write(d);
-});
+    https.get('api.chess.com/pub/player/ivaneduardoneira/games', function(res){
 
-}).on('error', (e) => {
-        console.error(e);
-});
+        console.log("enviando res")
+        console.log(res)
+
+        res.on('data', function(d){
+            console.log(d)
+        });
+    }).on('error', function(e){
+        console.log("enviando error")
+        console.log(e)
+    });
 /*
     https.get(options, function (res) {
 
