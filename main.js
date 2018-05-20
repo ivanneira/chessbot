@@ -27,17 +27,14 @@ var options = {
     hostname: 'api.chess.com'
     ,path: '/pub/player/ivaneduardoneira/games'
     ,method: 'GET'
-    ,headers: { 'Content-Type': 'application/json' }
+    ,json: true
 }
 
 function update(){
 
-    var req = https.request(options, function(res){
-
-        res.setEncoding('utf8');
-        res.on('data', function (data) {
-            console.log(JSON.parse(data));
-        });
+    request(options, function(error, response, body){
+        if(error) console.log(error);
+        else console.log(body);
     });
 
 /*
