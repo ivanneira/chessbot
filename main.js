@@ -1,5 +1,5 @@
 'use strict';
-var https = require('http');
+var https = require('https');
 var tryjson = require('tryjson');
 var TelegramBot = require('telegram-bot-api');
 
@@ -19,7 +19,7 @@ var api = new TelegramBot({
 var options = {
     host: '10.2.0.1',
     port: 6588,
-    path: '/pub/player/ivaneduardoneira/games',
+    path: 'api.chess.com/pub/player/ivaneduardoneira/games',
     headers: {'User-Agent': 'request'}
 };
 
@@ -29,6 +29,7 @@ var imbrium = 490801566;
 var turnoAnterior = "blancas";
 
 function update(){
+
 
     https.get(options, function (res) {
 
