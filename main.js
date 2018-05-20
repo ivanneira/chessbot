@@ -1,5 +1,5 @@
 'use strict';
-var https = require('https');
+var https = require('http');
 var tryjson = require('tryjson');
 var TelegramBot = require('telegram-bot-api');
 
