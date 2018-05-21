@@ -38,12 +38,8 @@ function process(){
 
     console.log(games);
 
-    for(var index in games){
 
-
-        console.log(index)
-
-        if(games[index].turn === "white"){
+        if(games[0].turn === "white"){
 
             turno = "blancas";
         }else{
@@ -57,7 +53,6 @@ function process(){
             sendMessage(turno);
         }
 
-    }
 
 
 
