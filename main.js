@@ -29,7 +29,7 @@ var turnoAnterior = "negras";
 
 function update() {
 
-    superagent.get(url')
+    superagent.get(url)
         .end(function(err, res){
         if (err)
         {
