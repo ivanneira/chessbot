@@ -4,6 +4,9 @@ const axios = require('axios');
 var superagent = require('superagent');
 var https = require('https');
 var tryjson = require('tryjson');
+const got = require('got');
+
+
 var TelegramBot = require('telegram-bot-api');
 
 var url = 'https://api.chess.com/pub/player/ivaneduardoneira/games';
@@ -29,17 +32,14 @@ var turnoAnterior = "negras";
 
 function update() {
 
-    superagent.get(url)
-        .end(function(err, res){
-        if (err)
-        {
-            return console.log(err);
-        }
+    got(url, { json: true }).then(function(response) {
+        console.log(response);
+        games = response.games[0];
+        process();
 
-    console.log(res);
-
-    //console.log(res.body.explanation);
-});
+    }).catch(function(error){
+            console.log(error.response.body);
+    });
 
 }
 

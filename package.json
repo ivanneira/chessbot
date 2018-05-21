@@ -5,6 +5,7 @@
   "main": "main.js",
   "dependencies": {
     "axios": "^0.18.0",
+    "got": "^8.3.1",
     "simple-ajax": "^2.6.0",
     "superagent": "^3.8.3",
     "telegram-bot-api": "^1.2.0",
