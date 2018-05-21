@@ -1,17 +1,11 @@
 'use strict';
 var request = require('request');
-
-
 var TelegramBot = require('telegram-bot-api');
 
 var url = 'https://api.chess.com/pub/player/ivaneduardoneira/games';
 
 var api = new TelegramBot({
-    token: '605637086:AAGyrQN2rkiG0guSD-ze2g7xuEU8jFO5D0E',
-    updates: {
-        enabled: true,
-        get_interval: 1000
-    }
+    token: '605637086:AAGyrQN2rkiG0guSD-ze2g7xuEU8jFO5D0E'
 });
 
 
