@@ -12,8 +12,8 @@ var api = new TelegramBot({
 var games;
 var ivan = 14910151;
 var imbrium = 490801566;
-var turnoAnterior = "negras";
-
+var turnoAnterior = "blancas";
+var refreshTime = 5000;
 
 function update() {
 
@@ -72,12 +72,12 @@ function sendMessage(turno){
 
         message = "Blancas movieron el día " + fecha + ", es el turno de las negras";
     }
-
-    enviar(ivan, message.text)
+    console.log(message)
+    enviar(ivan, message)
 
 }
 
-setInterval(update, 10000);
+setInterval(update, refreshTime);
 
 /*recepcion de mensajes*/
 api.on('message', function(message){
