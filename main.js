@@ -32,18 +32,25 @@ function update() {
         console.log('error:', error); // Print the error if one occurred
         console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
         console.log('body:', body); // Print the HTML for the Google homepage.
+
+        if(error){
+            console.log(error);
+        }else{
+
+            games = body.games[0];
+            process()
+        }
     });
 
 }
 
-function process(game){
+function process(){
 
-    games = game;
 
     var turno;
 
 
-    if(game.turn === "white"){
+    if(games.turn === "white"){
 
         turno = "blancas";
     }else{
