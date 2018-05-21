@@ -1,8 +1,8 @@
 'use strict';
-var https = require('https');
+var request = require('request-json');
 var getJSON = require('get-json')
 
-
+var client = request.createClient('api.chess.com');
 
 var TelegramBot = require('telegram-bot-api');
 
@@ -30,15 +30,13 @@ var turnoAnterior = "negras";
 function update() {
 
 
-    getJSON(url, function(error, response){
-
-        if(error){
-            console.log(error);
+    client.get('/pub/player/ivaneduardoneira/games', function(err, res, body) {
+        if(err){
+            console.log(err);
         }else{
             console.log(response);
         }
-
-    })
+    });
 
 }
 
