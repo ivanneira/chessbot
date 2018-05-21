@@ -38,7 +38,7 @@ function update() {
         process();
 
     }).catch(function(error){
-            console.log(error.response.body);
+            console.log(error);
     });
 
 }
@@ -86,7 +86,7 @@ function sendMessage(turno){
 
 }
 
-setInterval(update, 10000);
+setInterval(update, 5000);
 
 /*recepcion de mensajes*/
 api.on('message', function(message){
