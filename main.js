@@ -29,9 +29,6 @@ function update() {
 
 
     request(url, function (error, response, body) {
-        console.log('error:', error); // Print the error if one occurred
-        console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-        console.log('body:', body); // Print the HTML for the Google homepage.
 
         if(error){
             console.log(error);
@@ -49,8 +46,12 @@ function process(){
 
     var turno;
 
+
+
     for(var index in games){
 
+
+        console.log(games[index]);
 
         if(games[index].turn === "white"){
 
