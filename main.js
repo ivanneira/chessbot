@@ -34,7 +34,7 @@ function update() {
         if(err){
             console.log(err);
         }else{
-            console.log(res.rows[0]);
+            console.log(body);
         }
     });
 
