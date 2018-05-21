@@ -28,16 +28,14 @@ var turnoAnterior = "negras";
 
 function update() {
 
-    axios.get(url)
-        .then(function(response){
-
-        console.log(response);
-        games = response.games[0];
-        process();
-    })
-    .catch(function(error){
-            console.log(error);
-    });
+    async function getUser() {
+        try {
+            const response = await axios.get(url);
+            console.log(response);
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
 }
 
