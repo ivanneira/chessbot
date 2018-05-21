@@ -1,6 +1,7 @@
 'use strict';
 var request = require('request');
 const axios = require('axios');
+const superagent = require('superagent');
 var https = require('https');
 var tryjson = require('tryjson');
 var TelegramBot = require('telegram-bot-api');
@@ -28,14 +29,17 @@ var turnoAnterior = "negras";
 
 function update() {
 
-    async function getUser() {
-        try {
-            const response = await axios.get(url);
-            console.log(response);
-        } catch (error) {
-            console.error(error);
+    superagent.get(url')
+        .end(function(err, res){
+        if (err)
+        {
+            return console.log(err);
         }
-    }
+
+    console.log(res);
+
+    //console.log(res.body.explanation);
+});
 
 }
 
