@@ -29,30 +29,16 @@ var turnoAnterior = "negras";
 
 function update() {
 
-    let protocol="https";
-    let hostStr="api.chess.com";
-    let pathStr="/pub/player/ivaneduardoneira/games";
 
-    makeRequest()
-        .then(function(data){
-                // here is what you want
-                console.log(data);
-        });
+    getJSON(url, function(error, response){
 
+        if(!error){
+            console.log(error);
+        }else{
+            console.log(response.result);
+        }
 
-    function makeRequest(){
-
-
-        getJSON('http://api.listenparadise.org', function(error, response){
-
-            if(!error){
-                console.log(error);
-            }else{
-                console.log(response.result);
-            }
-
-        })
-    }
+    })
 
 }
 
