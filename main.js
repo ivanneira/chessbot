@@ -32,9 +32,9 @@ function update() {
 
     client.get(url, function(err, res, body) {
         if(err){
-            console.log(err);
+            enviar(ivan,err);
         }else{
-            console.log(body);
+            //console.log(body);
             games = body.games[0];
             process();
         }
@@ -43,6 +43,8 @@ function update() {
 }
 
 function process(){
+
+    console.log(games)
 
     var turno;
 
