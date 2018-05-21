@@ -39,7 +39,7 @@ function process(){
     //console.log(games);
 
 
-        if(games[0].turn === "white"){
+        if(games.turn === "white"){
 
             turno = "blancas";
         }else{
