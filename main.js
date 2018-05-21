@@ -49,20 +49,26 @@ function process(){
 
     var turno;
 
+    for(var index in games){
 
-    if(games.turn === "white"){
 
-        turno = "blancas";
-    }else{
+        if(games[index].turn === "white"){
 
-        turno = "negras";
+            turno = "blancas";
+        }else{
+
+            turno = "negras";
+        }
+
+        if(turnoAnterior !== turno){
+
+            turnoAnterior = turno;
+            sendMessage(turno);
+        }
+
     }
 
-    if(turnoAnterior !== turno){
 
-        turnoAnterior = turno;
-        sendMessage(turno);
-    }
 
 }
 
