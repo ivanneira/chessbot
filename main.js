@@ -42,12 +42,12 @@ function process(){
 
     var turno;
 
-
+    console.log(games);
 
     for(var index in games){
 
 
-        console.log(games[index]);
+        console.log(index)
 
         if(games[index].turn === "white"){
 
