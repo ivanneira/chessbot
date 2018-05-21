@@ -35,19 +35,21 @@ function update() {
             enviar(ivan,err);
         }else{
             //console.log(body);
-            games = body.games[0];
-            process();
+
+            process( body.games[0]);
         }
     });
 
 }
 
-function process(){
+function process(game){
+
+    games = game;
 
     var turno;
 
 
-    if(games.turn === "white"){
+    if(game.turn === "white"){
 
         turno = "blancas";
     }else{
