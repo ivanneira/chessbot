@@ -24,7 +24,7 @@ function update() {
             console.log(error);
         }else{
 
-            games = body.games;
+            games = body.games[0];
             process()
         }
     });
