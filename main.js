@@ -1,10 +1,7 @@
 'use strict';
-var request = require('request');
-const axios = require('axios');
-var superagent = require('superagent');
 var https = require('https');
-var tryjson = require('tryjson');
-const got = require('got');
+var getJSON = require('get-json')
+
 
 
 var TelegramBot = require('telegram-bot-api');
@@ -45,34 +42,16 @@ function update() {
 
     function makeRequest(){
 
-        return new Promise(function(resolve){
 
-            let obj='';
-            let options = {
-                host:hostStr,
-                path:pathStr,
-                method:"GET"
-            };
+        getJSON('http://api.listenparadise.org', function(error, response){
 
-        let https=require(protocol);
+            if(!error){
+                console.log(error);
+            }else{
+                console.log(response.result);
+            }
 
-        var callback = function(response){
-            var str='';
-
-            response.on('data',function(chunk){
-                str+=chunk;
-            });
-
-            response.on('end',function(){
-                obj=JSON.parse(str);
-                resolve(obj);
-            });
-        }
-
-        let request = https.request(options,callback);
-
-        request.end();
-    });
+        })
     }
 
 }
