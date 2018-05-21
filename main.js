@@ -1,7 +1,7 @@
 'use strict';
 var request = require('request');
 const axios = require('axios');
-const superagent = require('superagent');
+var superagent = require('superagent');
 var https = require('https');
 var tryjson = require('tryjson');
 var TelegramBot = require('telegram-bot-api');
