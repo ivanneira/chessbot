@@ -32,7 +32,7 @@ function update() {
 
     getJSON(url, function(error, response){
 
-        if(!error){
+        if(error){
             console.log(error);
         }else{
             console.log(response);
