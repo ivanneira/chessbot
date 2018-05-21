@@ -1,8 +1,6 @@
 'use strict';
-var request = require('request-json');
-var getJSON = require('get-json')
+var request = require('request');
 
-var client = request.createClient('127.0.0.1');
 
 var TelegramBot = require('telegram-bot-api');
 
@@ -30,14 +28,10 @@ var turnoAnterior = "blancas";
 function update() {
 
 
-    client.get(url, function(err, res, body) {
-        if(err){
-            enviar(ivan,err);
-        }else{
-            //console.log(body);
-
-            process( body.games[0]);
-        }
+    request(url, function (error, response, body) {
+        console.log('error:', error); // Print the error if one occurred
+        console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+        console.log('body:', body); // Print the HTML for the Google homepage.
     });
 
 }
