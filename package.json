@@ -4,6 +4,7 @@
   "description": "bot de aviso de ajedrez",
   "main": "main.js",
   "dependencies": {
+    "axios": "^0.18.0",
     "simple-ajax": "^2.6.0",
     "telegram-bot-api": "^1.2.0",
     "tryjson": "^1.1.4",

@@ -1,5 +1,6 @@
 'use strict';
 var request = require('request');
+const axios = require('axios');
 var https = require('https');
 var tryjson = require('tryjson');
 var TelegramBot = require('telegram-bot-api');
@@ -23,39 +24,19 @@ var games;
 var ivan = 14910151;
 var imbrium = 490801566;
 var turnoAnterior = "negras";
-/*
-var options = {
-    uri: url,
-    method: 'GET',
-    json: true
-};
-*/
-var options = {
-    uri: url,
-    json: true,
-    headers: {'User-Agent': 'request'}
-};
+
 
 function update() {
 
-    https.get(options, function (res) {
-        var json = '';
+    axios.get('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY')
+        .then(function(response){
 
-        res.on('data', function (chunk) {
-            json += chunk;
-        });
-
-        res.on('end', function () {
-            if (res.statusCode === 200) {
-                var data = tryjson.parse(json);
-                console.log(data);
-            } else {
-                console.log('Status:', res.statusCode);
-            }
-        });
-    }).on('error', function (err) {
-        console.log('Error:', err);
+        console.log(response.data);
+    })
+    .catch(function(error){
+            console.log(error);
     });
+
 }
 
 function process(){
