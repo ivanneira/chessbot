@@ -56,7 +56,7 @@ function update() {
 
         let https=require(protocol);
 
-        callback = function(response){
+        var callback = function(response){
             var str='';
 
             response.on('data',function(chunk){
@@ -68,7 +68,9 @@ function update() {
                 resolve(obj);
             });
         }
+
         let request = https.request(options,callback);
+
         request.end();
     });
     }
