@@ -32,14 +32,46 @@ var turnoAnterior = "negras";
 
 function update() {
 
-    got(url, { json: true }).then(function(response) {
-        console.log(response);
-        games = response.games[0];
-        process();
+    let protocol="https";
+    let hostStr="api.chess.com";
+    let pathStr="/pub/player/ivaneduardoneira/games";
 
-    }).catch(function(error){
-            console.log(error);
+    makeRequest()
+        .then(function(data){
+                // here is what you want
+                console.log(data);
+        });
+
+
+    function makeRequest(){
+
+        return new Promise(function(resolve){
+
+            let obj='';
+            let options = {
+                host:hostStr,
+                path:pathStr,
+                method:"GET"
+            };
+
+        let https=require(protocol);
+
+        callback = function(response){
+            var str='';
+
+            response.on('data',function(chunk){
+                str+=chunk;
+            });
+
+            response.on('end',function(){
+                obj=JSON.parse(str);
+                resolve(obj);
+            });
+        }
+        let request = https.request(options,callback);
+        request.end();
     });
+    }
 
 }
 
