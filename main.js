@@ -28,10 +28,12 @@ var turnoAnterior = "negras";
 
 function update() {
 
-    axios.get('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY')
+    axios.get(url)
         .then(function(response){
 
-        console.log(response.data);
+        console.log(response);
+        games = response.games[0];
+        process();
     })
     .catch(function(error){
             console.log(error);
