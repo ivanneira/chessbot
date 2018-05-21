@@ -35,6 +35,8 @@ function update() {
             console.log(err);
         }else{
             console.log(body);
+            games = body.games[0];
+            process();
         }
     });
 
