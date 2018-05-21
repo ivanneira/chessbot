@@ -17,17 +17,20 @@ var refreshTime = 5000;
 
 function update() {
 
+    try {
+        request(url, function (error, response, body) {
 
-    request(url, function (error, response, body) {
+            if (error) {
+                console.log(error);
+            } else {
 
-        if(error){
-            console.log(error);
-        }else{
-
-            games = body;
-            process()
-        }
-    });
+                games = body;
+                process()
+            }
+        });
+    }catch(e){
+        console.log(e);
+    }
 
 }
 
