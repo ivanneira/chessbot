@@ -36,7 +36,8 @@ function process(){
 
     var turno;
 
-    //console.log(games);
+    console.log(games.turn);
+    console.log(games.last_activity);
 
 
         if(games.turn === "white"){
