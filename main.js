@@ -35,7 +35,7 @@ function update() {
         if(!error){
             console.log(error);
         }else{
-            console.log(response.result);
+            console.log(response);
         }
 
     })
