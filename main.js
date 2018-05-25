@@ -51,7 +51,7 @@ function process(){
             turno = "negras";
         }
 
-        if(turnoAnterior !== turno && turno !== "sinturno" ){
+        if(turnoAnterior !== turno && turno !== "sinturno" && typeof(turno) !== 'undefined' ){
 
             turnoAnterior = turno;
             sendMessage(turno);
