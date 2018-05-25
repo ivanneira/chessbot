@@ -24,6 +24,10 @@ function update() {
                 console.log(error);
             } else {
 
+                console.log("body")
+                console.log(body)
+
+
                 games = body;
                 process()
             }
@@ -39,8 +43,8 @@ function process(){
 
     var turno;
 
-    console.log(games.turn);
-    console.log(games.last_activity);
+    //console.log(games.turn);
+    //console.log(games.last_activity);
 
 
         if(games.turn === "white"){
@@ -76,7 +80,7 @@ function sendMessage(turno){
 
         message = "Blancas movieron el día " + fecha + ", es el turno de las negras";
     }
-    console.log(message)
+    //console.log(message)
     enviar(ivan, message)
 
 }
