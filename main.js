@@ -13,8 +13,9 @@ var games;
 var ivan = 14910151;
 var imbrium = 490801566;
 var turnoAnterior = "blancas";
-var refreshTime = 5000;
+var refreshTime = 9000;
 
+//llamado a la API de chess.com
 function update() {
 
     try {
@@ -24,46 +25,37 @@ function update() {
                 console.log(error);
             } else {
 
-                console.log("body")
-                console.log(body)
-
-
-                games = body;
+                games = JSON.parse(body);
+                games = games.games[0];
                 process()
             }
         });
     }catch(e){
         console.log(e);
     }
-
 }
 
+//compara turno anterior con nuevo turno
 function process(){
 
-
-    var turno;
-
-    //console.log(games.turn);
-    //console.log(games.last_activity);
-
+    var turno = "sinturno";
 
         if(games.turn === "white"){
 
             turno = "blancas";
-        }else{
+        }
+
+        if(games.turn === "black")
+        {
 
             turno = "negras";
         }
 
-        if(turnoAnterior !== turno){
+        if(turnoAnterior !== turno && turno !== "sinturno" ){
 
             turnoAnterior = turno;
             sendMessage(turno);
         }
-
-
-
-
 }
 
 
@@ -75,16 +67,17 @@ function sendMessage(turno){
 
     if(turno === "blancas"){
 
-        message = "Negras movieron el día " + fecha + ", es el turno de las blancas";
+        message = "Negras movieron el [día " + fecha + "], es el turno de las blancas";
     }else{
 
-        message = "Blancas movieron el día " + fecha + ", es el turno de las negras";
+        message = "Blancas movieron el [día " + fecha + "], es el turno de las negras";
     }
-    //console.log(message)
-    enviar(ivan, message)
 
+    enviar(ivan, message)
+    //enviar(imbrium, message)
 }
 
+//proceso principal
 setInterval(update, refreshTime);
 
 /*recepcion de mensajes*/
@@ -101,6 +94,7 @@ api.on('message', function(message){
     }
 });
 
+//envío simple
 function enviar(user, message){
 
     api.sendMessage({
