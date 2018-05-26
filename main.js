@@ -1,5 +1,7 @@
 'use strict';
 var request = require('request');
+var http = require("https");
+var rp = require('request-promise');
 var TelegramBot = require('telegram-bot-api');
 
 var url = 'https://api.chess.com/pub/player/ivaneduardoneira/games';
@@ -13,26 +15,25 @@ var games;
 var ivan = 14910151;
 var imbrium = 490801566;
 var turnoAnterior = "blancas";
-var refreshTime = 9000;
+var refreshTime = 5000;
 
 //llamado a la API de chess.com
 function update() {
 
-    try {
-        request(url, function (error, response, body) {
-
-            if (error) {
-                console.log(error);
-            } else {
-
-                games = JSON.parse(body);
-                games = games.games[0];
-                process()
-            }
+    rp.get({
+        uri: url,
+        transform: function(body, res){
+            res = JSON.parse(body);
+            return res;
+        }
+    }).then(function(res){
+        games = res.games[0];
+        process();
+    })
+        .catch(function(err){
+            console.error(err); // This will print any error that was thrown in the previous error handler.
         });
-    }catch(e){
-        console.log(e);
-    }
+
 }
 
 //compara turno anterior con nuevo turno
@@ -45,7 +46,7 @@ function process(){
             turno = "blancas";
         }
 
-        if(games.turn === "black")
+    if(games.turn === "black")
         {
 
             turno = "negras";
@@ -67,10 +68,10 @@ function sendMessage(turno){
 
     if(turno === "blancas"){
 
-        message = "Negras movieron el [día " + fecha + "], es el turno de las blancas";
+        message = "Negras movieron el [día " + fecha + "] es el turno de las blancas";
     }else{
 
-        message = "Blancas movieron el [día " + fecha + "], es el turno de las negras";
+        message = "Blancas movieron el [día " + fecha + "] es el turno de las negras";
     }
 
     enviar(ivan, message)
