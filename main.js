@@ -1,7 +1,6 @@
 'use strict';
-var request = require('request');
-var http = require("https");
 var rp = require('request-promise');
+var fs = require('fs');
 var TelegramBot = require('telegram-bot-api');
 
 var url = 'https://api.chess.com/pub/player/ivaneduardoneira/games';
@@ -10,72 +9,91 @@ var api = new TelegramBot({
     token: '605637086:AAGyrQN2rkiG0guSD-ze2g7xuEU8jFO5D0E'
 });
 
-
-var games;
+var lastMove = "";
+var move;
 var ivan = 14910151;
 var imbrium = 490801566;
-var turnoAnterior = "blancas";
-var refreshTime = 5000;
+var refreshTime = 10000;
 
-//llamado a la API de chess.com
-function update() {
+function update(){
 
-    rp.get({
-        uri: url,
-        transform: function(body, res){
-            res = JSON.parse(body);
-            return res;
+    fs.readFile('lastmove', 'utf8', function read(err, data) {
+        if (err) {
+            console.log(err);
+        }else {
+
+            lastMove = parseInt( data );
+
+            decide();
         }
-    }).then(function(res){
-        games = res.games[0];
-        process();
-    })
-        .catch(function(err){
-            console.error(err); // This will print any error that was thrown in the previous error handler.
-        });
+
+    });
 
 }
 
-//compara turno anterior con nuevo turno
-function process(){
+function decide(){
 
-    var turno = "sinturno";
-
-        if(games.turn === "white"){
-
-            turno = "blancas";
-        }
-
-    if(games.turn === "black")
-        {
-
-            turno = "negras";
-        }
-
-        if(turnoAnterior !== turno && turno !== "sinturno" && typeof(turno) !== 'undefined' ){
-
-            turnoAnterior = turno;
-            sendMessage(turno);
-        }
+    toMove('imbrium3');
+    toMove('ivaneduardoneira');
 }
 
+function toMove(user){
 
-function sendMessage(turno){
 
-    var message = "";
-    var options = { day: "numeric", hour: "numeric", minute: "numeric"};
-    var fecha = new Date( games.last_activity*1000 ).toLocaleDateString('ar-ES',options);
+        rp.get({
+            uri: 'https://api.chess.com/pub/player/' + user + '/games/to-move',
+            transform: function(body, res){
+                res.data = JSON.parse(body);
+                return res;
+            }
+        }).then(function(res){
 
-    if(turno === "blancas"){
+           move = res.data.games[0];
 
-        message = "Negras movieron el [día " + fecha + "] es el turno de las blancas";
+           process(user);
+        })
+            .catch(function(err){
+                console.log(err);
+            });
+}
+
+//procesamiento de datos
+function process(user){
+
+
+
+    if(move){
+
+        var date = new Date(move.move_by*1000)
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+
+        if(move.move_by !== lastMove){
+            fs.writeFile('lastmove', move.move_by, function(err){
+
+                if (err){
+                    console.log(err)
+                }
+
+            });
+
+            if(user === 'ivaneduardoneira'){
+                console.log("nuevo " + user)
+                enviar(ivan, "Nuevo movimiento a las " + hours + ':' + minutes );
+            }
+
+            if(user === 'imbrium3'){
+                console.log("nuevo " + user)
+                enviar(imbrium, "Nuevo movimiento a las " + hours + ':' + minutes);
+            }
+
+        }else{
+            console.log("no " + user)
+        }
+
     }else{
-
-        message = "Blancas movieron el [día " + fecha + "] es el turno de las negras";
+        console.log("nada " + user)
     }
-
-    enviar(ivan, message)
-    //enviar(imbrium, message)
 }
 
 //proceso principal
