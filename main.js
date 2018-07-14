@@ -20,7 +20,7 @@ var api = new TelegramBot({
 
 var lastMove = "";
 var move;
-var ivan = 14910151;
+var ivan = 199362262;
 var imbrium = 490801566;
 var refreshTime = 10000;
 
