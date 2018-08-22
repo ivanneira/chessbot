@@ -40,10 +40,11 @@ function update(){
 
 }
 
+
 function decide(){
 
     toMove('imbrium3');
-    toMove('ivaneduardoneira');
+    toMove('LetrangerMeursault');
 }
 
 function toMove(user){
